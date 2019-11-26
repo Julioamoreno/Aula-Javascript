@@ -15,7 +15,7 @@ function getTotal(list){
 function setList(list){
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr></thead><tbody>'
     for(var key in list){
-        table += '<tr><td>'+ formatDesc(list[key].desc) +'</td><td>'+list[key].amount+'</td><td>'+ formatValue(list[key].value) +'</td><td>Edit | Delete</td></tr>'
+        table += '<tr><td>'+ formatDesc(list[key].desc) +'</td><td>'+list[key].amount+'</td><td>'+ formatValue(list[key].value) +'</td><td> <button class="btn btn-default" onclick="setUpdate('+key+')"> Edit </button> | Delete</td></tr>'
 
     }
     table += '</tbody>'
@@ -36,7 +36,7 @@ function formatValue(value){
     str = "$ " + str
     return str
 }
-
+//Função para incluir novos registros
 function addData(){
     var desc = document.getElementById("desc").value
     var amount = document.getElementById("amount").value
@@ -45,6 +45,23 @@ function addData(){
     setList(lista)
 }
 
+function setUpdate(id){
+    var obj = lista[id]
+    document.getElementById("desc").value = obj.desc
+    document.getElementById("amount").value = obj.amount
+    document.getElementById("value").value = obj.value
+    document.getElementById("btnUpdate").style.display = "inline-block"
+    document.getElementById("btnAdd").style.display = "none"
+
+}
+
+function resetForm(){
+    document.getElementById("desc").value = ""
+    document.getElementById("amount").value = "" 
+    document.getElementById("value").value = ""
+    document.getElementById("btnUpdate").style.display = "none"
+    document.getElementById("btnAdd").style.display = "inline-block"
+}
 
 setList(lista)
 console.log(getTotal(lista))

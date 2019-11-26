@@ -28,7 +28,11 @@
           <div class="form-group">
                 <input type="text" class="form-control" id="value" placeholder="Value">
           </div>
-          <button onclick="addData();" class="btn btn-default">ADD</button>
+          <span id="btnUpdate" style="display:none">
+            <button onclick="updateData()" class="btn btn-default">Save</button>
+            <button onclick="resetForm()" class="btn btn-default">Cancel</button>
+          </span>
+          <button id="btnAdd" onclick="addData()" class="btn btn-default">ADD</button>
         </div>
         <table id="listTable" class="table">  <!-- tabela sendo populada pelo arquivo main.js -->
         </table>
