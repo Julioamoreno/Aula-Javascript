@@ -15,7 +15,7 @@ function getTotal(list){
 function setList(list){
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr></thead><tbody>'
     for(var key in list){
-        table += '<tr><td>'+ formatDesc(list[key].desc) +'</td><td>'+list[key].amount+'</td><td>'+ formatValue(list[key].value) +'</td><td> <button class="btn btn-default" onclick="setUpdate('+key+')"> Edit </button> | Delete</td></tr>'
+        table += '<tr><td>'+ formatDesc(list[key].desc) +'</td><td>'+list[key].amount+'</td><td>'+ formatValue(list[key].value) +'</td><td> <button class="btn btn-default" onclick="setUpdate('+key+')"> Edit </button> | <button class="btn btn-default" onclick="deleteData('+key+')">Delete</td></tr>'
 
     }
     table += '</tbody>'
@@ -55,8 +55,8 @@ function setUpdate(id){
 
     document.getElementById("inputIDUpdate").innerHTML = '<input type="hidden" id="idUpdate" value="'+id+'">'
 }
-
-function resetForm(){
+//Limpa Formulario
+function resetForm(){ 
     document.getElementById("desc").value = ""
     document.getElementById("amount").value = "" 
     document.getElementById("value").value = ""
@@ -72,9 +72,25 @@ function updateData(){
     var value = document.getElementById("value").value
     
     lista[id] = {"desc": desc, "amount": amount, "value": value}
-    resetForm()
+    resetForm() //
     setList(lista)
 }
 
+function deleteData(id){
+    if(confirm("Delete this item ?")){
+        if(id === lista.length -1){
+            lista.pop()
+        }else if(id === 0){
+            lista.shift()
+        }else{
+            var arrrayIni = lista.slice(0,id)   //Fatia o array, até o registro antecessor ao ID.
+            var arrayFin = lista.slice(id + 1)  //Fatia o array, desde o registo sucessor ao ID até o final.
+            lista = arrrayIni.concat(arrayFin)  //Concatena as duas partes do array, sendo excluido com ID passado por parametro 
+        }
+        setList(lista)
+
+    }
+
+}
 setList(lista)
 console.log(getTotal(lista))
