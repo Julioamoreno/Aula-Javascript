@@ -53,6 +53,7 @@ function setUpdate(id){
     document.getElementById("btnUpdate").style.display = "inline-block"
     document.getElementById("btnAdd").style.display = "none"
 
+    document.getElementById("inputIDUpdate").innerHTML = '<input type="hidden" id="idUpdate" value="'+id+'">'
 }
 
 function resetForm(){
@@ -61,6 +62,18 @@ function resetForm(){
     document.getElementById("value").value = ""
     document.getElementById("btnUpdate").style.display = "none"
     document.getElementById("btnAdd").style.display = "inline-block"
+    document.getElementById("inputIDUpdate").innerHTML = ""
+}
+
+function updateData(){
+    var id =     document.getElementById("idUpdate").value 
+    var desc = document.getElementById("desc").value
+    var amount = document.getElementById("amount").value 
+    var value = document.getElementById("value").value
+    
+    lista[id] = {"desc": desc, "amount": amount, "value": value}
+    resetForm()
+    setList(lista)
 }
 
 setList(lista)
