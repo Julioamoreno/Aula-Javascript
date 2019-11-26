@@ -37,5 +37,14 @@ function formatValue(value){
     return str
 }
 
+function addData(){
+    var desc = document.getElementById("desc").value
+    var amount = document.getElementById("amount").value
+    var value = document.getElementById("value").value
+    lista.unshift({"desc":desc,"amount":amount,"value":value})
+    setList(lista)
+}
+
+
 setList(lista)
 console.log(getTotal(lista))
