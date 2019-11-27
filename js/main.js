@@ -4,12 +4,13 @@ var lista = [
     {"desc":"meat","amount":"1","value":"15.00"}
 ]
 
+//Retorna o valor total dos valores dos elementos
 function getTotal(list){
     var total = 0
     for(var key in list){
         total += list[key].value * list[key].amount
     }
-    return total
+    document.getElementById("totalValue").innerHTML = formatValue(total)
 }
 
 function setList(list){
@@ -20,6 +21,7 @@ function setList(list){
     }
     table += '</tbody>'
     document.getElementById("listTable").innerHTML = table
+    getTotal(list) 
 }
 
 //Deixa a primeira letra da descrição maiuscula
@@ -142,5 +144,5 @@ function validation(){
     }
 
 }
+
 setList(lista)
-console.log(getTotal(lista))
