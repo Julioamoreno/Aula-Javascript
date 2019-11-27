@@ -73,7 +73,7 @@ function resetForm(){
     document.getElementById("btnUpdate").style.display = "none"
     document.getElementById("btnAdd").style.display = "inline-block"
     document.getElementById("inputIDUpdate").innerHTML = ""
-    document.getElementById("errors").style.display = none
+    document.getElementById("errors").style.display = "none"
 }
 
 function updateData(){
@@ -142,7 +142,13 @@ function validation(){
     }else{
         return 1
     }
+}
 
+function deleteList(){
+    if(confirm("Delete this list?")){
+        list = []
+        setList(list)
+    }
 }
 
 setList(lista)
