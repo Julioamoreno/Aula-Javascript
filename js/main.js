@@ -22,6 +22,7 @@ function setList(list){
     table += '</tbody>'
     document.getElementById("listTable").innerHTML = table
     getTotal(list) 
+    saveListStorage(list)
 }
 
 //Deixa a primeira letra da descrição maiuscula
@@ -144,6 +145,7 @@ function validation(){
     }
 }
 
+//Função para deletar lista
 function deleteList(){
     if(confirm("Delete this list?")){
         list = []
@@ -151,4 +153,18 @@ function deleteList(){
     }
 }
 
-setList(lista)
+//Funçao para colocar lista no localStorage
+function saveListStorage(list){
+    var jsonStr = JSON.stringify(list)
+    localStorage.setItem("lista",jsonStr)
+}
+
+function initListStorage(){
+    var testList = localStorage.getItem("lista")
+    if(testList){
+        lista = JSON.parse(testList)
+    }
+    setList(lista)
+}
+
+initListStorage()
